@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "33333333-3333-4333-8333-333333333333",
+  "title": "Infrastructure check",
+  "questions": [
+    {
+      "id": "q_inspected",
+      "type": "date",
+      "label": "Inspection date",
+      "required": true
+    },
+    {
+      "id": "q_defects",
+      "type": "multi_choice",
+      "label": "Defects",
+      "required": false,
+      "choices": [
+        { "id": "c_crack", "label": "Crack" },
+        { "id": "c_rust", "label": "Rust" },
+        { "id": "c_missing", "label": "Missing part" }
+      ]
+    },
+    {
+      "id": "q_comment",
+      "type": "text",
+      "label": "Comment",
+      "required": false,
+      "validation": { "maxLength": 120 },
+      "visibility": {
+        "match": "all",
+        "conditions": [{ "questionId": "q_defects", "operator": "is_not_empty" }]
+      }
+    },
+    {
+      "id": "q_point",
+      "type": "gps",
+      "label": "Point",
+      "required": false,
+      "allowManualLocation": true
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "fieldsurvey",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:bare": "vite build --mode bare",
+    "build:e2e": "vite build --mode e2e",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:e2e": "playwright test",
+    "generate:assets": "node scripts/generate-assets.mjs",
+    "check:secrets": "SUPABASE_SERVICE_ROLE_KEY=fieldsurvey-service-role-canary-do-not-ship sh -c 'npm run build:bare && node scripts/check-secrets.mjs'",
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run test:integration && npm run check:secrets"
+  },
+  "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.2.6",
+    "@supabase/supabase-js": "^2.49.1",
+    "dexie": "^4.0.11",
+    "leaflet": "^1.9.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.4.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@eslint/js": "^9.22.0",
+    "@playwright/test": "^1.51.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@types/leaflet": "^1.9.16",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "fake-indexeddb": "^6.0.1",
+    "jsdom": "^26.0.0",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.1",
+    "vite": "^6.2.2",
+    "vite-plugin-pwa": "^0.21.2",
+    "vitest": "^3.0.9"
+  }
+}
