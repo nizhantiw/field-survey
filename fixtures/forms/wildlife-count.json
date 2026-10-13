@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "22222222-2222-4222-8222-222222222222",
+  "title": "Wildlife count",
+  "questions": [
+    {
+      "id": "q_count",
+      "type": "number",
+      "label": "Count",
+      "required": true,
+      "validation": { "min": 0, "max": 999, "integer": true }
+    },
+    {
+      "id": "q_sign",
+      "type": "boolean",
+      "label": "Sign observed",
+      "required": true
+    },
+    {
+      "id": "q_evidence",
+      "type": "photo",
+      "label": "Evidence photo",
+      "required": true,
+      "visibility": {
+        "match": "all",
+        "conditions": [{ "questionId": "q_sign", "operator": "eq", "value": true }]
+      }
+    },
+    {
+      "id": "q_species",
+      "type": "text",
+      "label": "Species",
+      "required": false
+    }
+  ]
+}

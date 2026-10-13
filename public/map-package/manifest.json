@@ -1,0 +1,47 @@
+{
+  "id": "synthetic-field-001",
+  "version": 1,
+  "name": "Synthetic test area (not real geography)",
+  "synthetic": true,
+  "bounds": {
+    "west": 0,
+    "south": 0,
+    "east": 20,
+    "north": 20
+  },
+  "minZoom": 2,
+  "maxZoom": 2,
+  "tiles": [
+    {
+      "z": 2,
+      "x": 0,
+      "y": 0,
+      "bytes": 1026,
+      "sha256": "779fd38c73854e7310eb705484330548f1f07c256ba76224534bef477b88082e"
+    },
+    {
+      "z": 2,
+      "x": 1,
+      "y": 0,
+      "bytes": 1026,
+      "sha256": "7181bdf8ae35d84734f901bd7516d21733b65af0bacdd8e73f38333a1beb8644"
+    },
+    {
+      "z": 2,
+      "x": 0,
+      "y": 1,
+      "bytes": 1026,
+      "sha256": "e68129ef5c1b4e50d9c59c73afef4b63fd981c95a796ddff95d6423c017b6441"
+    },
+    {
+      "z": 2,
+      "x": 1,
+      "y": 1,
+      "bytes": 1026,
+      "sha256": "0116f1f7ad99689532b00110f0262737696de104b613c3ab45d683c8529abad9"
+    }
+  ],
+  "attribution": "Synthetic FieldSurvey test tiles. Not for navigation.",
+  "license": "CC0-1.0 synthetic test fixture",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+}

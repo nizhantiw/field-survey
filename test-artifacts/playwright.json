@@ -1,0 +1,603 @@
+{
+  "config": {
+    "argv": [
+      "/exec-daemon/node",
+      "/workspace/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/workspace/playwright.config.ts",
+    "rootDir": "/workspace/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/workspace/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "bare",
+        "name": "bare",
+        "testDir": "/workspace/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/bare\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/workspace/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "harness",
+        "name": "harness",
+        "testDir": "/workspace/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/harness\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/workspace/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "bare",
+        "testDir": "/workspace/tests/e2e",
+        "snapshotDir": "/workspace/tests/e2e",
+        "testIgnore": [],
+        "testMatch": {},
+        "timeout": 60000,
+        "use": {
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "baseURL": "http://127.0.0.1:4174",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "bare"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/workspace/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "harness",
+        "testDir": "/workspace/tests/e2e",
+        "snapshotDir": "/workspace/tests/e2e",
+        "testIgnore": [],
+        "testMatch": {},
+        "timeout": 60000,
+        "use": {
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "baseURL": "http://127.0.0.1:4173",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "harness"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-artifacts/playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "bare/config.spec.ts",
+      "file": "bare/config.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "P0-04 shows an actionable setup error when credentials are missing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "bare",
+              "projectName": "bare",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 263,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:27.396Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b261384be36ae3765a92-aeaff3a3e9f3897ee4bc",
+          "file": "bare/config.spec.ts",
+          "line": 12,
+          "column": 1
+        },
+        {
+          "title": "P4-01 and P4-03 open the cached shell offline and explain first use",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "bare",
+              "projectName": "bare",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 473,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:27.717Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b261384be36ae3765a92-3257c7eccea2195e4364",
+          "file": "bare/config.spec.ts",
+          "line": 21,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "harness/workflows.spec.ts",
+      "file": "harness/workflows.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "invalid credentials fail without a sensitive detail",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 317,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:28.672Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-f450cbc67d2462032bd9",
+          "file": "harness/workflows.spec.ts",
+          "line": 34,
+          "column": 1
+        },
+        {
+          "title": "P2 editor preserves labels and renders untrusted text safely",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 648,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:29.052Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-fdc550780e9f61f7c772",
+          "file": "harness/workflows.spec.ts",
+          "line": 43,
+          "column": 1
+        },
+        {
+          "title": "fieldworker cannot publish and can complete a conditional form",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1459,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:29.710Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-9c1e264b453194fd38c2",
+          "file": "harness/workflows.spec.ts",
+          "line": 63,
+          "column": 1
+        },
+        {
+          "title": "P3-07 a failed local write is visible and is not marked saved",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1323,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:31.176Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-7f52969869db03a3d82a",
+          "file": "harness/workflows.spec.ts",
+          "line": 80,
+          "column": 1
+        },
+        {
+          "title": "P3-01 answers survive reload and a persistent-profile restart",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2609,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:32.506Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-d7e02cd47d8d4851ee6d",
+          "file": "harness/workflows.spec.ts",
+          "line": 95,
+          "column": 1
+        },
+        {
+          "title": "P5 manual location is labeled and a denied fix does not invent coordinates",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 592,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:35.123Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-470f325f15036a38f9e3",
+          "file": "harness/workflows.spec.ts",
+          "line": 140,
+          "column": 1
+        },
+        {
+          "title": "P8 pending ingestion stays out of the default review list and CSV escapes formulas",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 544,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:35.724Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-d25d39814212cfbbe6d2",
+          "file": "harness/workflows.spec.ts",
+          "line": 156,
+          "column": 1
+        },
+        {
+          "title": "P4-02 completes a downloaded survey with the network blocked",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1540,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:36.277Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-162fb845070a7693f3ad",
+          "file": "harness/workflows.spec.ts",
+          "line": 171,
+          "column": 1
+        },
+        {
+          "title": "P6 downloads the synthetic map and renders it with the network blocked",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 678,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:37.824Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-11b0a7bd280c2148afde",
+          "file": "harness/workflows.spec.ts",
+          "line": 191,
+          "column": 1
+        },
+        {
+          "title": "P9-04 has no horizontal overflow at target widths",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 523,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:38.509Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-38ed181cec228a41c925",
+          "file": "harness/workflows.spec.ts",
+          "line": 215,
+          "column": 1
+        },
+        {
+          "title": "P9-05 exposes labels and has no serious axe violations on sign-in",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "harness",
+              "projectName": "harness",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 536,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:11:39.039Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0222243ae6059b10f22-bb74a59618c3bfd9037c",
+          "file": "harness/workflows.spec.ts",
+          "line": 225,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-13T11:11:19.041Z",
+    "duration": 20597.064000000002,
+    "expected": 13,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
