@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import type { FormVersionRecord } from '../backend/types';
 import { canPublish } from '../domain/authz/roles';
@@ -8,6 +8,8 @@ import type { Question, QuestionType, SurveyDefinition } from '../domain/survey/
 import { QUESTION_TYPES } from '../domain/survey/types';
 import { FormRenderer } from './form-renderer';
 import { useApp } from './provider';
+
+const SurveyJsDesigner = lazy(() => import('./surveyjs-designer').then((module) => ({ default: module.SurveyJsDesigner })));
 
 export function EditorScreen() {
   const { formId = '' } = useParams();
@@ -20,6 +22,7 @@ export function EditorScreen() {
   const [issues, setIssues] = useState<string[]>([]);
   const [message, setMessage] = useState('');
   const [roleCanPublish, setRoleCanPublish] = useState(false);
+  const [designerOpen, setDesignerOpen] = useState(false);
 
   useEffect(() => {
     void (async () => {
@@ -59,7 +62,19 @@ export function EditorScreen() {
           <input type="checkbox" checked={preview} onChange={(event) => setPreview(event.target.checked)} />
           Mobile preview
         </label>
+        <button type="button" className="secondary" onClick={() => setDesignerOpen((open) => !open)}>
+          {designerOpen ? 'Close SurveyJS designer' : 'SurveyJS designer'}
+        </button>
       </div>
+      {designerOpen ? (
+        <Suspense fallback={<p>Loading SurveyJS…</p>}>
+          <SurveyJsDesigner
+            survey={survey}
+            onChange={setSurvey}
+            onIssues={(items) => setIssues(items)}
+          />
+        </Suspense>
+      ) : null}
       {message ? <p role="status">{message}</p> : null}
       {issues.length > 0 ? (
         <ul>

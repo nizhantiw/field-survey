@@ -7,7 +7,9 @@ import { DraftLockError, SaveFailedError, claimLock, completeRecord, saveDraft, 
 import type { LocalRecord } from '../db/db';
 import { FIRST_USE_OFFLINE } from '../domain/fieldwork/provision';
 import { FormRenderer } from './form-renderer';
+import { GpsPreview } from './gps-preview';
 import { tabId, useApp } from './provider';
+import { toneFor } from './tone';
 
 export function CollectScreen() {
   const { recordId = '' } = useParams();
@@ -109,6 +111,7 @@ export function CollectScreen() {
     );
   }
 
+  const capturedLocation = Object.values(answers).find((value) => isLocation(value)) ?? null;
   return (
     <section className="stack">
       <h1>{record.definitionSnapshot.title}</h1>
@@ -118,6 +121,7 @@ export function CollectScreen() {
       </p>
       {locked ? <p className="banner bad" role="alert">This draft is open in another tab. Your changes were not saved.</p> : null}
       {basemapNote ? <p role="status">{basemapNote}</p> : null}
+      {capturedLocation ? <GpsPreview reading={capturedLocation} basemapUrl={app.config.basemapUrl} attribution={app.config.basemapAttribution} /> : null}
       <FormRenderer
         definition={record.definitionSnapshot}
         answers={answers}
@@ -134,7 +138,7 @@ export function CollectScreen() {
           Complete record
         </button>
       ) : (
-        <p className="status-pill">Local status: {record.status}</p>
+        <p className="status-pill" data-tone={toneFor(record.status)}>Local status: {record.status}</p>
       )}
     </section>
   );

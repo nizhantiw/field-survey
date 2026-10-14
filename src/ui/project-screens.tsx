@@ -4,6 +4,7 @@ import { canCollect, canManageMembers, canPublish, type Role } from '../domain/a
 import { createEmptySurvey } from '../domain/survey/editor';
 import { cacheForm, createDraft } from '../db/records';
 import { tabId, useApp } from './provider';
+import { toneFor } from './tone';
 import { useNavigate } from 'react-router';
 
 export function ProjectScreens(props: { mode: 'org' | 'project' }) {
@@ -30,7 +31,7 @@ function OrgScreen() {
       <ul className="stack">
         {projects.map((project) => (
           <li key={project.id} className="card">
-            <Link to={`/projects/${project.id}`}>{project.name}</Link> <span className="status-pill">{project.role}</span>
+            <Link to={`/projects/${project.id}`}>{project.name}</Link> <span className="status-pill" data-tone={toneFor(project.role)}>{project.role}</span>
           </li>
         ))}
       </ul>
@@ -57,7 +58,7 @@ function OrgScreen() {
         {members.map((member) => (
           <li key={member.userId} className="card row">
             <span>{member.displayName}</span>
-            <span className="status-pill">{member.role}</span>
+            <span className="status-pill" data-tone={toneFor(member.role)}>{member.role}</span>
             {actor && canManageMembers(actor.role) ? (
               <label>
                 Role
@@ -106,14 +107,14 @@ function ProjectScreen() {
     <section className="stack">
       <h1>Project</h1>
       <p>
-        Your role: <span className="status-pill">{role}</span>
+        Your role: <span className="status-pill" data-tone={toneFor(role)}>{role}</span>
       </p>
       {error ? <p className="error" role="alert">{error}</p> : null}
       <ul className="stack">
         {forms.map((form) => (
           <li key={form.id} className="card stack">
             <strong>{form.title}</strong>
-            <span className="muted">{form.currentVersionNumber ? `Published version ${form.currentVersionNumber}` : 'Not published'}</span>
+            <span className="status-pill" data-tone={form.currentVersionNumber ? 'ok' : 'neutral'}>{form.currentVersionNumber ? `Published version ${form.currentVersionNumber}` : 'Not published'}</span>
             <div className="row">
               {canPublish(role) ? <Link to={`/projects/${projectId}/forms/${form.id}`}>Edit</Link> : null}
               {canCollect(role) && form.currentVersionId ? (
@@ -125,7 +126,7 @@ function ProjectScreen() {
           </li>
         ))}
       </ul>
-      <Link to={`/projects/${projectId}/submissions`}>Review submissions</Link>
+      <Link className="secondary" to={`/projects/${projectId}/submissions`}>Review submissions</Link>
       {canPublish(role) ? (
         <form
           className="stack"

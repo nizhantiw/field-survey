@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { applyManualAdjustment, formatAccuracy, formatCoordinate } from '../domain/gps/location';
 import { choiceLabel, evaluateVisibility, isLocation, isPhotoAnswer } from '../domain/survey/engine';
 import type { AnswerMap, AnswerValue, LocationReading, Question, SurveyDefinition } from '../domain/survey/types';
+import { toneFor } from './tone';
 
 export function FormRenderer(props: {
   definition: SurveyDefinition;
@@ -198,7 +199,7 @@ function GpsControl(props: {
       {reading ? (
         <div>
           <p>
-            <span className="status-pill">{reading.source === 'manual' ? 'Manual' : 'Device'}</span>{' '}
+            <span className="status-pill" data-tone={toneFor(reading.source === 'manual' ? 'Manual' : 'Device')}>{reading.source === 'manual' ? 'Manual' : 'Device'}</span>{' '}
             {formatCoordinate(reading.latitude, reading.accuracy)}, {formatCoordinate(reading.longitude, reading.accuracy)} {formatAccuracy(reading.accuracy)}
           </p>
           {reading.originalDevice ? (

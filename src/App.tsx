@@ -15,6 +15,7 @@ import { ProjectScreens } from './ui/project-screens';
 import { ReviewScreens } from './ui/review-screens';
 import { SettingsScreen } from './ui/settings-screen';
 import { SyncScreen } from './ui/sync-screen';
+import { toneFor } from './ui/tone';
 
 export function App() {
   const config = readPublicConfig();
@@ -132,12 +133,25 @@ function Shell() {
       </div>
       <nav className="bottom-nav" aria-label="Primary">
         <NavLink to="/" end>
+          <TabIcon name="projects" />
           Projects
         </NavLink>
-        <NavLink to="/drafts">Drafts</NavLink>
-        <NavLink to="/sync">Sync</NavLink>
-        <NavLink to="/map">Map</NavLink>
-        <NavLink to="/fieldwork">Prepare</NavLink>
+        <NavLink to="/drafts">
+          <TabIcon name="drafts" />
+          Drafts
+        </NavLink>
+        <NavLink to="/sync">
+          <TabIcon name="sync" />
+          Sync
+        </NavLink>
+        <NavLink to="/map">
+          <TabIcon name="map" />
+          Map
+        </NavLink>
+        <NavLink to="/fieldwork">
+          <TabIcon name="prepare" />
+          Prepare
+        </NavLink>
       </nav>
     </>
   );
@@ -167,8 +181,10 @@ function LoginScreen() {
   if (!app.ready) return <main className="app-shell">Loading…</main>;
   if (app.user) return <Navigate to="/" replace />;
   return (
-    <main className="app-shell stack">
+    <main className="app-shell auth-screen stack">
+      <p className="muted">FieldSurvey</p>
       <h1>Sign in</h1>
+      <p className="muted">Use the account for your organization. Records stay on this device until you sync.</p>
       <form
         className="stack"
         onSubmit={(event) => {
@@ -215,15 +231,17 @@ function HomeScreen() {
   return (
     <section className="stack">
       <h1>Projects</h1>
-      <p>
-        Signed in as {app.user?.displayName}. <Link to="/help">Installation help</Link> · <Link to="/settings">Settings</Link>
-      </p>
+      <p>Signed in as {app.user?.displayName}.</p>
+      <div className="row">
+        <Link className="secondary" to="/help">Installation help</Link>
+        <Link className="secondary" to="/settings">Settings</Link>
+      </div>
       {error ? <p className="error" role="alert">{error}</p> : null}
       <ul className="stack">
         {orgs.map((org) => (
           <li key={org.id} className="card">
             <Link to={`/orgs/${org.id}`}>{org.name}</Link>
-            <span className="status-pill">{org.role}</span>
+            <span className="status-pill" data-tone={toneFor(org.role)}>{org.role}</span>
           </li>
         ))}
       </ul>
@@ -265,11 +283,26 @@ function DraftsScreen() {
       <ul className="stack">
         {rows.map((row) => (
           <li key={row.id} className="card">
-            <Link to={`/drafts/${row.id}`}>{row.title}</Link> <span className="status-pill">{row.status}</span>
+            <Link to={`/drafts/${row.id}`}>{row.title}</Link> <span className="status-pill" data-tone={toneFor(row.status)}>{row.status}</span>
           </li>
         ))}
       </ul>
     </section>
+  );
+}
+
+function TabIcon(props: { name: 'projects' | 'drafts' | 'sync' | 'map' | 'prepare' }) {
+  const paths: Record<typeof props.name, string> = {
+    projects: 'M4 6.5h7v5H4v-5Zm9 0h7v5h-7v-5ZM4 13.5h7v5H4v-5Zm9 0h7v5h-7v-5Z',
+    drafts: 'M6 4.5h8l4 4V19.5H6v-15Zm8 1.2V9h3.3',
+    sync: 'M7 8a5 5 0 0 1 8.5-2L17 7.5M17 5v3h-3M17 16a5 5 0 0 1-8.5 2L7 16.5M7 19v-3h3',
+    map: 'M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Zm0-7.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z',
+    prepare: 'M12 3.5 5 6.5v5.2c0 4.2 2.8 7.2 7 8.8 4.2-1.6 7-4.6 7-8.8V6.5L12 3.5Z',
+  };
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d={paths[props.name]} />
+    </svg>
   );
 }
 

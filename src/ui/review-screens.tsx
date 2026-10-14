@@ -5,6 +5,7 @@ import type { Role } from '../domain/authz/roles';
 import { applySubmissionFilter, reviewPatch, toCsv, toGeoJson, toJson, type ExportRecord, type SubmissionFilter } from '../domain/export/export';
 import type { ReviewStatus } from '../domain/sync/states';
 import { useApp } from './provider';
+import { toneFor } from './tone';
 import wildlife from '../../fixtures/forms/wildlife-count.json';
 import { parseSurvey } from '../domain/survey/schema';
 
@@ -58,8 +59,8 @@ function ReviewList() {
         {rows.map((row) => (
           <li key={row.id} className="card">
             <Link to={`/projects/${projectId}/submissions/${row.id}`}>{row.id}</Link>
-            <span className="status-pill">{row.ingestionStatus === 'complete' ? 'Complete ingestion' : 'Pending — not a completed result'}</span>
-            <span className="status-pill">{row.reviewStatus}</span>
+            <span className="status-pill" data-tone={toneFor(row.ingestionStatus === 'complete' ? 'Complete ingestion' : 'Pending — not a completed result')}>{row.ingestionStatus === 'complete' ? 'Complete ingestion' : 'Pending — not a completed result'}</span>
+            <span className="status-pill" data-tone={toneFor(row.reviewStatus)}>{row.reviewStatus}</span>
           </li>
         ))}
       </ul>
@@ -108,8 +109,15 @@ function ReviewDetail() {
     <section className="stack">
       <h1>Submission</h1>
       <p>Form version {row.versionNumber}</p>
-      <p>Ingestion: {row.ingestionStatus === 'complete' ? 'Complete ingestion' : 'Pending — not a completed result'}</p>
-      <p>Review: {row.reviewStatus}</p>
+      <p>
+        Ingestion:{' '}
+        <span className="status-pill" data-tone={toneFor(row.ingestionStatus === 'complete' ? 'Complete ingestion' : 'Pending — not a completed result')}>
+          {row.ingestionStatus === 'complete' ? 'Complete ingestion' : 'Pending — not a completed result'}
+        </span>
+      </p>
+      <p>
+        Review: <span className="status-pill" data-tone={toneFor(row.reviewStatus)}>{row.reviewStatus}</span>
+      </p>
       <pre>{JSON.stringify(row.answers, null, 2)}</pre>
       {canReview(role) ? (
         <label>

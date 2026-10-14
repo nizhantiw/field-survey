@@ -41,7 +41,7 @@ export function FieldworkScreen() {
   return (
     <section className="stack">
       <h1>Prepare for fieldwork</h1>
-      <p>{ready ? 'Ready for offline collection.' : 'Not ready.'}</p>
+      <p className={ready ? 'banner ok' : 'banner'} role="status">{ready ? 'Ready for offline collection.' : 'Not ready.'}</p>
       <ul>
         <li>Application shell cached: {shellReady ? 'yes' : 'no'}</li>
         <li>Forms downloaded: {formsReady ? 'yes' : 'no'}</li>

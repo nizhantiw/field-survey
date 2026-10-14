@@ -3,6 +3,7 @@ import { listRecordsForUser } from '../db/records';
 import type { LocalRecord } from '../db/db';
 import { syncUserQueue } from '../sync/local-sync';
 import { useApp } from './provider';
+import { toneFor } from './tone';
 
 export function SyncScreen() {
   const app = useApp();
@@ -44,7 +45,7 @@ export function SyncScreen() {
         {rows.map((row) => (
           <li key={row.id} className="card">
             <strong>{row.definitionSnapshot.title}</strong>
-            <span className="status-pill">{row.status === 'synced' ? 'Synced' : row.status}</span>
+            <span className="status-pill" data-tone={toneFor(row.status)}>{row.status === 'synced' ? 'Synced' : row.status}</span>
             {row.lastError ? <p>{row.lastError}</p> : null}
           </li>
         ))}
